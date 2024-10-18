@@ -16,8 +16,11 @@ jobs:
         with:
           php-version: 8.3
 
-      - name: Install app
+      - name: Create database
         run: touch ./database/database.sqlite
+
+      - name: Copy .env
+        run: cp .env.example .env
 
       - name: Install app
         run: composer install
@@ -25,7 +28,7 @@ jobs:
       - name: Run migrations
         run: php artisan migrate
 
-      - name: Test PHPUnit
+      - name: Test PHPStan
         run: ./vendor/bin/phpstan analyse  
 
       - name: Test PHPUnit
