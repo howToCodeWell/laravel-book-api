@@ -10,24 +10,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
-
+ 
       - name: Create database
         run: touch ./database/database.sqlite
-
+  
       - name: Copy .env
-        run: cp .env.example .env
+        run: cp .env.test .env
 
       - name: Install app
         run: composer install
-
+ 
       - name: Run migrations
         run: php artisan migrate
-
+ 
       - name: Test PHPStan
         run: ./vendor/bin/phpstan analyse
 
