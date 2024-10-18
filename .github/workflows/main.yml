@@ -17,7 +17,13 @@ jobs:
           php-version: 8.3
 
       - name: Install app
+        run: touch ./database/database.sqlite
+
+      - name: Install app
         run: composer install
+
+      - name: Run migrations
+        run: php artisan migrate
 
       - name: Test PHPUnit
         run: ./vendor/bin/phpstan analyse  
