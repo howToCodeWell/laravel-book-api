@@ -1,0 +1,26 @@
+name: Build, test and deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install app
+        run: composer install
+
+      - name: Test PHPUnit
+        run: ./vendor/bin/phpstan analyse  
+
+      - name: Test PHPUnit
+        run: ./vendor/bin/phpunit  

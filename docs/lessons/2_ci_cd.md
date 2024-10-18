@@ -49,4 +49,51 @@ parameters:
 
 5. How to create GitHub actions
 
+```bash
+# Create workflow file
+
+touch .github/workflows/main.yml
+
+```
+
+6. Create pipeline for main and develop
+
+```bash
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+```
+
+7. Create build job
+```bash
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install app
+        run: composer install
+
+     - name: Test PHPUnit
+        run: ./vendor/bin/phpstan analyse  
+
+     - name: Test PHPUnit
+        run: ./vendor/bin/phpunit  
+
+
+
+```
+
+8. Create deploy job
+
+
 6. CI/CD to VPS
