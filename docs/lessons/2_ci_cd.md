@@ -9,8 +9,8 @@
 1. How to install PHPStan
 
 ```bash
-composer require  phpstan/phpstan   --dev
-composer require nunomaduro/larastan:^2.0 --dev
+composer require phpstan/phpstan --dev
+composer require larastan/larastan --dev
 ```
 
 2. How to configure PHPStan
@@ -59,11 +59,16 @@ touch .github/workflows/main.yml
 6. Create pipeline for main and develop
 
 ```bash
-name: Build and Deploy
+name: Build, test and deploy
 
 on:
   push:
     branches: [ main ]
+```
+
+8. Add APP_KEY to env.example
+```bash
+APP_KEY=base64:d9a9xJWd3Zn6aBuApVpYTrtGZwyfIC+EErLA7zNh1vg=
 ```
 
 7. Create build job
@@ -80,14 +85,23 @@ jobs:
         with:
           php-version: 8.3
 
+      - name: Create database
+        run: touch ./database/database.sqlite
+
+      - name: Copy .env
+        run: cp .env.test .env
+
       - name: Install app
         run: composer install
 
-     - name: Test PHPUnit
-        run: ./vendor/bin/phpstan analyse  
+      - name: Run migrations
+        run: php artisan migrate
 
-     - name: Test PHPUnit
-        run: ./vendor/bin/phpunit  
+      - name: Test PHPStan
+        run: ./vendor/bin/phpstan analyse
+
+      - name: Test PHPUnit
+        run: ./vendor/bin/phpunit
 
 
 
