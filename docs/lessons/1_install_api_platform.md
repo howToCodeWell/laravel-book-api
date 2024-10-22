@@ -65,6 +65,14 @@ php artisan migrate
 
 6. Make requests to http://127.0.0.1:8000/api/books via Postman
 
+7. Upload to Cloudways via Git/Control panel
 
+8. Change Cloudways PHP version setting to use PHP 8.3
+
+8. Change Cloudways webroot to `public_html/public`
+
+9. SSH onto the VPS copy `.env.test` to `.env`
+
+8. SSH onto the VPS and run commands in ./deploy.sh
 
 
