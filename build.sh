@@ -15,6 +15,6 @@ echo "[3/7] Publishing API Platform assets"
 php artisan api-platform:install
 
 echo "[4/8] Migrating database"
-php artisan migrate
+php artisan migrate --force 
 
 echo "Site has been deployed!"
