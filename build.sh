@@ -1,21 +1,20 @@
 #!/bin/bash
 
-echo "Running deploy script \n"
+echo "Running deploy script"
 
-echo "1/5 Pull new changes\n"
-git pull origin main
+echo "[1/4] Pulling from github"
+git pull origin
 
-echo "2/5 Create database if one isn't found \n"
+echo "[1/5] Creating database if one isn't found"
 touch database/database.sqlite
 
-echo "3/5 Installing packages using composer\n"
+echo "[2/6] Installing packages using composer"
 composer install
 
-echo "4/5 Publishing API Platform assets\n"
+echo "[3/7] Publishing API Platform assets"
 php artisan api-platform:install
 
-echo "5/5 Migrating database\n"
+echo "[4/8] Migrating database"
 php artisan migrate
 
-echo "Site has been deployed!\n"
-
+echo "Site has been deployed!"
