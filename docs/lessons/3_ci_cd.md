@@ -1,5 +1,5 @@
 
-# Lesson 2: CI / CD
+# Lesson 3: CI / CD
 
 - Install PHPStan
 - Configure GitHub actions
