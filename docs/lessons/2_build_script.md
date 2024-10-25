@@ -63,10 +63,10 @@ git config pull.rebase false
 pwd
 /home/master/applications/ejpujunzye/public_html
 
-git config --global --add safe.directory /home/1352768.cloudwaysapps.com/ejpujunzye/public_html
+git config --global --add safe.directory /home/1352768.cloudwaysapps.com/<APP_FOLDER_NAME>/public_html
 ```
 12. SSH into VPS and clone the app onto `public_html`
 
 13. Run `./build.sh` to update app
 
-14. `ssh  master_pfgrjtrjsv@54.225.152.93 'cd /home/master/applications/bwjdzjxpkt/public_html && ./build.sh'`
+14. `ssh  <username>@<VPS_IP> 'cd /home/master/applications/<APP_FOLDER_NAME>/public_html && ./build.sh'`
