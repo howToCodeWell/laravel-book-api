@@ -33,3 +33,15 @@ jobs:
 
       - name: Test PHPUnit
         run: ./vendor/bin/phpunit
+
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ${{ secrets.APP_PATH }}
+            ./build.sh
+
