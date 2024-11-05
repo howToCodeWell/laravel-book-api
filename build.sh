@@ -17,4 +17,5 @@ php artisan api-platform:install
 echo "[5/5] Migrating database"
 php artisan migrate --force
 
-echo "The app has been built!"
+echo "The app has been built and deployed!"
+
